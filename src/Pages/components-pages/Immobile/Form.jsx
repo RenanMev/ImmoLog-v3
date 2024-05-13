@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { Separator } from "@/components/ui/separator"
 
 export const FormRegisterImovel = () => {
   const [formValues, setFormValues] = useState({
@@ -21,6 +22,9 @@ export const FormRegisterImovel = () => {
     rua: '',
     numero: '',
     picture: null,
+    balence: '',
+    iptu: '',
+    rent: '',
   });
 
   const handleChange = (e) => {
@@ -28,8 +32,9 @@ export const FormRegisterImovel = () => {
     setFormValues(prevState => ({
       ...prevState,
       [name]: value,
-    }));
-  };
+    }))}
+  
+
 
   const handleFileChange = (e) => {
     const picture = e.target.files[0];
@@ -57,13 +62,12 @@ export const FormRegisterImovel = () => {
     <Dialog>
       <DialogTrigger className="bg-primary p-2 rounded-lg text-white font-bold px-6 ">Register</DialogTrigger>
       <Card>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle className="pb-4">Register new Immobile</DialogTitle>
-          <DialogDescription>
-            <form onSubmit={handleSubmit}>
-              <div className='gap-8 flex-col'>
-                <div className='flex gap-4 pb-4'>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="pb-4">Register new Immobile</DialogTitle>
+            <DialogDescription>
+              <form onSubmit={handleSubmit} className='gap-8 flex-col'>
+                <div className='flex gap-4 pb-2'>
                   <Input
                     className="w-28 "
                     type="text"
@@ -122,13 +126,37 @@ export const FormRegisterImovel = () => {
                       onChange={handleFileChange}
                     />
                   </div>
-                  <Button type="submit" className="row-start-7 w-full mt-6">Register</Button>
+                  <Separator />
+                  <Input
+                    className="row-start-4 row-end-5 col-start-1 col-end-3"
+                    type="text"
+                    placeholder="Balence"
+                    name="balence"
+                    value={formValues.balence}
+                    onChange={handleChange}
+                  />
+                  <Input
+                    className="row-start-4 row-end-5 col-start-3 col-end-5"
+                    type="number"
+                    placeholder="IPTU"
+                    name="iptu"
+                    value={formValues.iptu}
+                    onChange={handleChange}
+                  />
+                  <Input
+                    className="row-start-5 row-end-6 col-start-1 col-end-3"
+                    type="rent"
+                    placeholder="Rent"
+                    name="rent"
+                    value={formValues.rent}
+                    onChange={handleChange}
+                  />
                 </div>
-              </div>
-            </form>
-          </DialogDescription>
-        </DialogHeader>
-      </DialogContent>
+                <Button type="submit" className="row-start-7 w-full mt-6">Register</Button>
+              </form>
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
       </Card>
     </Dialog>
   );
