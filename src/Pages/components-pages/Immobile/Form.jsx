@@ -10,6 +10,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 
 export const FormRegisterImovel = () => {
   const [formValues, setFormValues] = useState({
@@ -55,6 +56,7 @@ export const FormRegisterImovel = () => {
   return (
     <Dialog>
       <DialogTrigger className="bg-primary p-2 rounded-lg text-white font-bold px-6 ">Register</DialogTrigger>
+      <Card>
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="pb-4">Register new Immobile</DialogTitle>
@@ -127,6 +129,7 @@ export const FormRegisterImovel = () => {
           </DialogDescription>
         </DialogHeader>
       </DialogContent>
+      </Card>
     </Dialog>
   );
 };
