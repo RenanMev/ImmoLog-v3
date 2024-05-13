@@ -75,6 +75,8 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { TooltipProvider } from "@radix-ui/react-tooltip"
+import img from "@/assets/Logo.png"
+
 
 export const Sidebar = () => {
   return (
@@ -84,7 +86,8 @@ export const Sidebar = () => {
           href="#"
           className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
         >
-          <Package2 className="h-4 w-4 transition-all group-hover:scale-110" />
+       <img className="pt-[1px] pl-[0.5px]" style={{ filter: "hue-rotate(340deg) brightness(100%)" }} src={img} alt="" />
+
           <span className="sr-only">Acme Inc</span>
         </a>
         <TooltipProvider>
