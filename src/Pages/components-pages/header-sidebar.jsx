@@ -13,9 +13,6 @@ export const HeaderSidebar = () => {
     name: "",
     email: ""
   })
-  const handleOpenSheetSettings = () => {
-    setOpenSettings(true);
-  };
 
   return (
     <div className="md:pl-14 pt-2 sm:pl-0">

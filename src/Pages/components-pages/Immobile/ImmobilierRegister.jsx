@@ -171,3 +171,4 @@ export const ImmobilierRegister = () => {
   </div></div>
   )
 }
+export default ImmobilierRegister

@@ -76,7 +76,7 @@ import {
 } from "@/components/ui/tooltip"
 import { TooltipProvider } from "@radix-ui/react-tooltip"
 import img from "@/assets/Logo.png"
-
+import { Outlet, Link } from "react-router-dom";
 
 export const Sidebar = () => {
   return (
@@ -110,7 +110,7 @@ export const Sidebar = () => {
                 className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
               >
                 <ShoppingCart className="h-5 w-5" />
-                <span className="sr-only">Orders</span>
+                <Link to={`contacts/1`}>Your Name</Link>
               </a>
             </TooltipTrigger>
             <TooltipContent side="right">Orders</TooltipContent>
