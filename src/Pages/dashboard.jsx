@@ -12,7 +12,7 @@ export function Dashboard() {
       <HeaderSidebar />
       <Routes>
         <Route path="/" element={<Imoveis />} />
-        <Route path="/dashboard/ImmobilierRegister" element={<ImmobilierRegister />} />
+        {/* <Route path="/" element={<ImmobilierRegister />} /> */}
         {/* Adicione outras rotas conforme necessário */}
       </Routes>
     </div>

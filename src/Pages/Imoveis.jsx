@@ -62,18 +62,18 @@ export default function Imoveis() {
                     alt="Product img"
                     className="aspect-square rounded-md object-cover"
                     height="64"
-                    src="/placeholder.svg"
+                    src="https://imgs.search.brave.com/dHOp1jmrzDUg9sIOXupIwyfIFwOuzArOLoXZ9CdUsqM/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/ZW1icmFjb24uY29t/LmJyL19uZXh0L2lt/YWdlP3VybD1odHRw/czovL2VtYnJhLWFz/c2V0cy5ueWMzLmRp/Z2l0YWxvY2VhbnNw/YWNlcy5jb20vcHVi/bGljL2Jsb2cvNUJ6/aGNZZWlIeFBYR0d3/SzBZVnFwMnJ0dW9J/WlZuLW1ldGFWbUZ1/ZEdGblpXNXpJR1Vn/WkdWemRtRnVkR0Zu/Wlc1eklHUmxJRzF2/Y21GeUlHVnRJSFZ0/SUhCeXc2bGthVzh1/YW5Cbi0uanBnJnc9/Mzg0MCZxPTc1"
                     width="64"
                   />
                 </TableCell>
                 <TableCell className="font-medium">
-                  Laser Lemonade Machine
+                      Imovel Rio Branco, Estrela Sul
                 </TableCell>
                 <TableCell>
                   <Badge variant="outline">Draft</Badge>
                 </TableCell>
                 <TableCell>$499.99</TableCell>
-                <TableCell className="hidden md:table-cell">25</TableCell>
+                <TableCell className="hidden md:table-cell">Jackson Eduardo</TableCell>
                 <TableCell className="hidden md:table-cell">
                   2023-07-12 10:42 AM
                 </TableCell>

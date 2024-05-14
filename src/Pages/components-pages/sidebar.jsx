@@ -14,10 +14,11 @@ import {
   PanelLeft,
   Search,
   Settings,
-  ShoppingCart,
+  Hotel,
   Truck,
   Users2,
 } from "lucide-react"
+
 
 import { Badge } from "@/components/ui/badge"
 import {
@@ -109,11 +110,13 @@ export const Sidebar = () => {
                 href="#"
                 className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
               >
-                <ShoppingCart className="h-5 w-5" />
-                <Link to={`contacts/1`}>Your Name</Link>
+                <a href="">
+                <Hotel  className="h-5 w-5" />
+                  </a>
+                <span className="sr-only">immobile</span>
               </a>
             </TooltipTrigger>
-            <TooltipContent side="right">Orders</TooltipContent>
+            <TooltipContent side="right">immobile</TooltipContent>
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>

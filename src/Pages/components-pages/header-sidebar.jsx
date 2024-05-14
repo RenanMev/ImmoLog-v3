@@ -6,6 +6,7 @@ import { Search } from "lucide-react";
 import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Label } from "@/components/ui/label"
+import profileImg from '@/assets/profile-img.jpg'
 
 export const HeaderSidebar = () => {
   const [openSettings, setOpenSettings] = useState(false);
@@ -46,7 +47,7 @@ export const HeaderSidebar = () => {
               className="overflow-hidden rounded-full"
             >
               <img
-                src="/placeholder-user.jpg"
+                src={profileImg}
                 width={36}
                 height={36}
                 alt="Avatar"
