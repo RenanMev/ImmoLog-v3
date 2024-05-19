@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import ImgLogo from "@/assets/Logoverde.png";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export function LoginForm() {
   const [email, setEmail] = useState('');
@@ -27,7 +28,7 @@ export function LoginForm() {
     e.preventDefault();
     console.log("Email:", email);
     console.log("Password:", password);
-    
+
   };
 
   return (
@@ -83,9 +84,9 @@ export function LoginForm() {
           </form>
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{" "}
-            <a href="#" className="underline">
+            <Link to="/registerpage" className="underline">
               Sign up
-            </a>
+            </Link>
           </div>
         </CardContent>
       </Card>

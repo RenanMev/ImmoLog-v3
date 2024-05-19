@@ -87,20 +87,17 @@ export const Sidebar = () => {
           href="#"
           className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
         >
-       <img className="pt-[1px] pl-[0.5px]" style={{ filter: "hue-rotate(340deg) brightness(100%)" }} src={img} alt="" />
+          <img className="pt-[1px] pl-[0.5px]" style={{ filter: "hue-rotate(340deg) brightness(100%)" }} src={img} alt="" />
 
           <span className="sr-only">Acme Inc</span>
         </a>
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <a
-                href="#"
-                className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-              >
+              <Link to="/" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
                 <Home className="h-5 w-5" />
                 <span className="sr-only">Dashboard</span>
-              </a>
+              </Link>
             </TooltipTrigger>
             <TooltipContent side="right">Dashboard</TooltipContent>
           </Tooltip>
@@ -111,8 +108,8 @@ export const Sidebar = () => {
                 className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
               >
                 <a href="">
-                <Hotel  className="h-5 w-5" />
-                  </a>
+                  <Hotel className="h-5 w-5" />
+                </a>
                 <span className="sr-only">immobile</span>
               </a>
             </TooltipTrigger>
