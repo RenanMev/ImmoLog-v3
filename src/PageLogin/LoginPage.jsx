@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import ImgLogo from "@/assets/Logoverde.png";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios"; 
 
 export function LoginForm() {
   const [email, setEmail] = useState('');
@@ -24,12 +25,17 @@ export function LoginForm() {
     setPassword(e.target.value);
   };
 
-  const handleLoginFormSubmit = (e) => {
+  const handleLoginFormSubmit = async (e) => {
     e.preventDefault();
-    console.log("Email:", email);
-    console.log("Password:", password);
-
-  };
+       await axios.post('http://localhost:3333/login', {
+            email: email,
+            password: password
+        }.then(
+          window.location.href = "/dashboard"
+        ));
+        
+  
+};
 
   return (
     <div className="w-full flex items-center justify-center h-screen">

@@ -1,21 +1,15 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Sidebar } from "./components-pages/sidebar";
-import { HeaderSidebar } from "./components-pages/header-sidebar";
-import Imoveis from "./Imoveis";
-import ImmobilierRegister from "./components-pages/Immobile/ImmobilierRegister";
+// Arquivo Dashboard.js
+
+import { Sidebar } from './components-pages/sidebar';
+import { HeaderSidebar } from './components-pages/header-sidebar';
+import { Outlet } from 'react-router-dom';
 
 export function Dashboard() {
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
       <Sidebar />
       <HeaderSidebar />
-      <Routes>
-        <Route path="/" element={<Imoveis />} />
-        <Route path="/dashboard/registerImovel" element={<ImmobilierRegister />} />
-      </Routes>
+      <Outlet />
     </div>
   );
 }
-
-export default Dashboard

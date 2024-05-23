@@ -26,7 +26,8 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-export default function Imoveis() {
+export default function  Imoveis() {
+  console.log("imoveis")
   return (
     <div className="px-20 pt-8">
       <Card>

@@ -1,13 +1,12 @@
-import { useState } from 'react'
-import { Button } from "@/components/ui/button"
-import { Dashboard } from './Pages/dashboard'
+import { BrowserRouter } from 'react-router-dom';
+import { Router } from './Router';
 
 function App() {
   return (
-    <>
-    <Dashboard/>
-    </>
-  )
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

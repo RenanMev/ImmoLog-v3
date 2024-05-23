@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   File,
   ListFilter,
@@ -24,8 +23,6 @@ import {
 import { Progress } from "@/components/ui/progress"
 import {
   Table,
-  TableBody,
-  TableCell,
   TableHead,
   TableHeader,
   TableRow,
@@ -38,7 +35,6 @@ import {
 } from "@/components/ui/tabs"
 import { FormRegisterImovel } from "@/Pages/components-pages/Immobile/Form"
 import { SalesHighlight } from "@/Pages/components-pages/Immobile/SalesHighlight"
-import { Badge } from '@/components/ui/badge'
 
 
 

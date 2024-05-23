@@ -1,83 +1,9 @@
-import * as React from "react"
-import {
-  ChevronLeft,
-  ChevronRight,
-  Copy,
-  CreditCard,
-  File,
-  Home,
-  LineChart,
-  ListFilter,
-  MoreVertical,
-  Package,
-  Package2,
-  PanelLeft,
-  Search,
-  Settings,
-  Hotel,
-  Truck,
-  Users2,
-} from "lucide-react"
-
-
-import { Badge } from "@/components/ui/badge"
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-} from "@/components/ui/pagination"
-import { Progress } from "@/components/ui/progress"
-import { Separator } from "@/components/ui/separator"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
+import { Link } from "react-router-dom"
+import { Home, Hotel,  Users2, LineChart, Settings, DiamondPlus } from "lucide-react"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { TooltipProvider } from "@radix-ui/react-tooltip"
 import img from "@/assets/Logo.png"
-import { Outlet, Link } from "react-router-dom";
+
 
 export const Sidebar = () => {
   return (
@@ -88,7 +14,6 @@ export const Sidebar = () => {
           className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
         >
           <img className="pt-[1px] pl-[0.5px]" style={{ filter: "hue-rotate(340deg) brightness(100%)" }} src={img} alt="" />
-
           <span className="sr-only">Acme Inc</span>
         </a>
         <TooltipProvider>
@@ -103,53 +28,39 @@ export const Sidebar = () => {
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <a
-                href="#"
-                className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-              >
-                <a href="">
-                  <Hotel className="h-5 w-5" />
-                </a>
-                <span className="sr-only">immobile</span>
-              </a>
+              <Link to="/dashboard/" className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
+                <Hotel className="h-5 w-5" />
+                <span className="sr-only">Imóvel</span>
+              </Link>
             </TooltipTrigger>
-            <TooltipContent side="right">immobile</TooltipContent>
+            <TooltipContent side="right">Imóvel</TooltipContent>
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <a
-                href="#"
-                className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-              >
-                <Package className="h-5 w-5" />
-                <span className="sr-only">Products</span>
-              </a>
+              <Link to="/dashboard/registerImmobiler" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
+                <DiamondPlus className="h-5 w-5" />
+                <span className="sr-only">Register</span>
+              </Link>
             </TooltipTrigger>
-            <TooltipContent side="right">Products</TooltipContent>
+            <TooltipContent side="right">Register</TooltipContent>
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <a
-                href="#"
-                className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-              >
+              <Link to="/clientes" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
                 <Users2 className="h-5 w-5" />
-                <span className="sr-only">Customers</span>
-              </a>
+                <span className="sr-only">Clientes</span>
+              </Link>
             </TooltipTrigger>
-            <TooltipContent side="right">Customers</TooltipContent>
+            <TooltipContent side="right">Clientes</TooltipContent>
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <a
-                href="#"
-                className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-              >
+              <Link to="/analise" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
                 <LineChart className="h-5 w-5" />
-                <span className="sr-only">Analytics</span>
-              </a>
+                <span className="sr-only">Análise</span>
+              </Link>
             </TooltipTrigger>
-            <TooltipContent side="right">Analytics</TooltipContent>
+            <TooltipContent side="right">Análise</TooltipContent>
           </Tooltip>
         </TooltipProvider>
       </nav>
@@ -157,15 +68,12 @@ export const Sidebar = () => {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <a
-                href="#"
-                className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-              >
+              <Link to="/configuracoes" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
                 <Settings className="h-5 w-5" />
-                <span className="sr-only">Settings</span>
-              </a>
+                <span className="sr-only">Configurações</span>
+              </Link>
             </TooltipTrigger>
-            <TooltipContent side="right">Settings</TooltipContent>
+            <TooltipContent side="right">Configurações</TooltipContent>
           </Tooltip>
         </TooltipProvider>
       </nav>

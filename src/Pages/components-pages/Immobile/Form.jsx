@@ -12,8 +12,10 @@ import { Label } from "@/components/ui/label";
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Separator } from "@/components/ui/separator"
+import axios from "axios"; 
 
 export const FormRegisterImovel = () => {
+  const {imagemValue, setImagemValue} = useState("src")
   const [formValues, setFormValues] = useState({
     cep: '',
     cidade: '',
@@ -21,7 +23,7 @@ export const FormRegisterImovel = () => {
     bairro: '',
     rua: '',
     numero: '',
-    picture: null,
+    picture: '',
     balence: '',
     iptu: '',
     rent: '',
@@ -44,9 +46,23 @@ export const FormRegisterImovel = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    console.log(formValues)
     e.preventDefault();
-    console.log('Formulário submetido:', formValues);
+    if(formValues.picture){
+      setImagemValue(formValues.img)
+    }
+    await axios.post('http://localhost:3333/registerImmobile', {
+      cep: formValues.cep,
+      rua: formValues.rua,
+      bairro: formValues.bairro,
+      cidade: formValues.cidade,
+      uf: formValues.uf,
+      balence: formValues.balence,
+      iptu: formValues.iptu,
+      img: imagemValue
+  })
+  
     setFormValues({
       cep: '',
       cidade: '',
@@ -56,6 +72,8 @@ export const FormRegisterImovel = () => {
       numero: '',
       picture: null,
     });
+
+
   };
 
   return (
@@ -75,6 +93,7 @@ export const FormRegisterImovel = () => {
                     name="cep"
                     value={formValues.cep}
                     onChange={handleChange}
+                    required
                   />
                   <Input
                     className="row-start-2 row-end-4 "
@@ -83,6 +102,7 @@ export const FormRegisterImovel = () => {
                     name="cidade"
                     value={formValues.cidade}
                     onChange={handleChange}
+                    required
                   />
                 </div>
                 <div className='grid grid-flow-col grid-cols-4 gap-2'>
@@ -91,6 +111,7 @@ export const FormRegisterImovel = () => {
                     type="text"
                     placeholder="UF"
                     name="uf"
+                    required
                     value={formValues.uf}
                     onChange={handleChange}
                   />
@@ -99,6 +120,7 @@ export const FormRegisterImovel = () => {
                     type="text"
                     placeholder="Bairro"
                     name="bairro"
+                    required
                     value={formValues.bairro}
                     onChange={handleChange}
                   />
@@ -106,6 +128,7 @@ export const FormRegisterImovel = () => {
                     className="row-start-2 row-end-5 col-start-1 col-end-4"
                     type="text"
                     placeholder="Rua"
+                    required
                     name="rua"
                     value={formValues.rua}
                     onChange={handleChange}
@@ -113,6 +136,7 @@ export const FormRegisterImovel = () => {
                   <Input
                     className="row-start-2 row-end-4 col-start-4 col-end-5"
                     type="text"
+                    required
                     placeholder="Número"
                     name="numero"
                     value={formValues.numero}
