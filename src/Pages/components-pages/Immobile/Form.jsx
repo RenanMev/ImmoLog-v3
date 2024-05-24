@@ -15,18 +15,19 @@ import { Separator } from "@/components/ui/separator"
 import axios from "axios"; 
 
 export const FormRegisterImovel = () => {
-  const {imagemValue, setImagemValue} = useState("src")
+  const [imagemValue, setImagemValue] = useState(""); 
+
   const [formValues, setFormValues] = useState({
-    cep: '',
-    cidade: '',
-    uf: '',
-    bairro: '',
-    rua: '',
-    numero: '',
-    picture: '',
-    balence: '',
-    iptu: '',
-    rent: '',
+    cep: '', // CEP (Código de Endereçamento Postal)
+    cidade: '', // Cidade
+    uf: '', // Estado
+    bairro: '', // Bairro
+    rua: '', // Rua
+    number: '', // Número
+    picture: '', // Foto
+    cost: '', // Custo
+    iptu: '', // IPTU (Imposto Predial e Territorial Urbano)
+    rent: '', // Aluguel
   });
 
   const handleChange = (e) => {
@@ -34,9 +35,8 @@ export const FormRegisterImovel = () => {
     setFormValues(prevState => ({
       ...prevState,
       [name]: value,
-    }))}
-  
-
+    }));
+  };
 
   const handleFileChange = (e) => {
     const picture = e.target.files[0];
@@ -47,33 +47,38 @@ export const FormRegisterImovel = () => {
   };
 
   const handleSubmit = async (e) => {
-    console.log(formValues)
     e.preventDefault();
-    if(formValues.picture){
-      setImagemValue(formValues.img)
+    if (formValues.picture) {
+      setImagemValue(formValues.picture); 
     }
-    await axios.post('http://localhost:3333/registerImmobile', {
-      cep: formValues.cep,
-      rua: formValues.rua,
-      bairro: formValues.bairro,
-      cidade: formValues.cidade,
-      uf: formValues.uf,
-      balence: formValues.balence,
-      iptu: formValues.iptu,
-      img: imagemValue
-  })
-  
-    setFormValues({
-      cep: '',
-      cidade: '',
-      uf: '',
-      bairro: '',
-      rua: '',
-      numero: '',
-      picture: null,
-    });
-
-
+    try {
+      await axios.post('http://localhost:3333/registerImmobile', {
+        cep: formValues.cep,
+        rua: formValues.rua,
+        bairro: formValues.bairro,
+        cidade: formValues.cidade,
+        uf: formValues.uf,
+        balance: formValues.balance, 
+        iptu: formValues.iptu,
+        img: imagemValue, 
+        number: formValues.number,
+        rent: formValues.rent,
+      });
+      setFormValues({
+        cep: '',
+        cidade: '',
+        uf: '',
+        bairro: '',
+        rua: '',
+        number: '',
+        picture: '',
+        cost: '', 
+        iptu: '',
+        rent: '',
+      });
+    } catch (error) {
+      console.error("Erro ao enviar dados para o servidor:", error);
+    }
   };
 
   return (
@@ -86,6 +91,15 @@ export const FormRegisterImovel = () => {
             <DialogDescription>
               <form onSubmit={handleSubmit} className='gap-8 flex-col'>
                 <div className='flex gap-4 pb-2'>
+                <Input
+                    className="w-28 "
+                    type="text"
+                    placeholder="Name Immobile"
+                    name="nameImmobile"
+                    value={formValues.nameImmobile}
+                    onChange={handleChange}
+                    required
+                  />
                   <Input
                     className="w-28 "
                     type="text"
@@ -138,8 +152,8 @@ export const FormRegisterImovel = () => {
                     type="text"
                     required
                     placeholder="Número"
-                    name="numero"
-                    value={formValues.numero}
+                    name="number"
+                    value={formValues.number}
                     onChange={handleChange}
                   />
                   <div className="col-start-1 col-end-4  max-w-sm items-center gap-1.5">
@@ -154,9 +168,9 @@ export const FormRegisterImovel = () => {
                   <Input
                     className="row-start-4 row-end-5 col-start-1 col-end-3"
                     type="text"
-                    placeholder="Balence"
-                    name="balence"
-                    value={formValues.balence}
+                    placeholder="Cost"
+                    name="cost"
+                    value={formValues.cost}
                     onChange={handleChange}
                   />
                   <Input
@@ -169,7 +183,6 @@ export const FormRegisterImovel = () => {
                   />
                   <Input
                     className="row-start-5 row-end-6 col-start-1 col-end-3"
-                    type="rent"
                     placeholder="Rent"
                     name="rent"
                     value={formValues.rent}
