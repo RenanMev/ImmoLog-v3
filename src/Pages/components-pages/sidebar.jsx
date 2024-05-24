@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom"
-import { Home, Hotel,  Users2, LineChart, Settings, DiamondPlus } from "lucide-react"
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
-import { TooltipProvider } from "@radix-ui/react-tooltip"
-import img from "@/assets/Logo.png"
-
+import { NavLink } from "react-router-dom";
+import { Home, Hotel, Users2, LineChart, Settings, DiamondPlus } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { TooltipProvider } from "@radix-ui/react-tooltip";
+import img from "@/assets/Logo.png";
 
 export const Sidebar = () => {
   return (
@@ -19,46 +18,46 @@ export const Sidebar = () => {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Link to="/" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
+              <NavLink to="/" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClassName="bg-accent text-accent-foreground">
                 <Home className="h-5 w-5" />
                 <span className="sr-only">Dashboard</span>
-              </Link>
+              </NavLink>
             </TooltipTrigger>
             <TooltipContent side="right">Dashboard</TooltipContent>
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Link to="/dashboard/" className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
+              <NavLink to="/dashboard/" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClassName="bg-accent text-accent-foreground">
                 <Hotel className="h-5 w-5" />
                 <span className="sr-only">Imóvel</span>
-              </Link>
+              </NavLink>
             </TooltipTrigger>
             <TooltipContent side="right">Imóvel</TooltipContent>
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Link to="/dashboard/registerImmobiler" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
+              <NavLink to="/dashboard/registerImmobiler" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClassName="bg-accent text-accent-foreground">
                 <DiamondPlus className="h-5 w-5" />
                 <span className="sr-only">Register</span>
-              </Link>
+              </NavLink>
             </TooltipTrigger>
             <TooltipContent side="right">Register</TooltipContent>
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Link to="/clientes" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
+              <NavLink to="/clientes" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClassName="bg-accent text-accent-foreground">
                 <Users2 className="h-5 w-5" />
                 <span className="sr-only">Clientes</span>
-              </Link>
+              </NavLink>
             </TooltipTrigger>
             <TooltipContent side="right">Clientes</TooltipContent>
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Link to="/analise" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
+              <NavLink to="/analise" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClassName="bg-accent text-accent-foreground">
                 <LineChart className="h-5 w-5" />
                 <span className="sr-only">Análise</span>
-              </Link>
+              </NavLink>
             </TooltipTrigger>
             <TooltipContent side="right">Análise</TooltipContent>
           </Tooltip>
@@ -68,15 +67,15 @@ export const Sidebar = () => {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Link to="/configuracoes" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
+              <NavLink to="/configuracoes" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClassName="bg-accent text-accent-foreground">
                 <Settings className="h-5 w-5" />
                 <span className="sr-only">Configurações</span>
-              </Link>
+              </NavLink>
             </TooltipTrigger>
             <TooltipContent side="right">Configurações</TooltipContent>
           </Tooltip>
         </TooltipProvider>
       </nav>
     </aside>
-  )
-}
+  );
+};

@@ -1,12 +1,13 @@
-import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
-import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTrigger } from "@/components/ui/sheet";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Label } from "@/components/ui/label"
 import profileImg from '@/assets/profile-img.jpg'
+import { ModeToggle } from "./DarkModeChange";
+import { useState } from "react";
+
 
 export const HeaderSidebar = () => {
   const [openSettings, setOpenSettings] = useState(false);
@@ -32,12 +33,7 @@ export const HeaderSidebar = () => {
           </BreadcrumbList>
         </Breadcrumb>
         <div className="relative ml-auto flex-1 md:grow-0">
-          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-          <Input
-            type="search"
-            placeholder="Search..."
-            className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[320px]"
-          />
+        <ModeToggle/>
         </div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
