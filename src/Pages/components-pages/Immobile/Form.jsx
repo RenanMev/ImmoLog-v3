@@ -18,6 +18,7 @@ export const FormRegisterImovel = () => {
   const [imagemValue, setImagemValue] = useState(""); 
 
   const [formValues, setFormValues] = useState({
+    name: '',
     cep: '', // CEP (Código de Endereçamento Postal)
     cidade: '', // Cidade
     uf: '', // Estado
@@ -53,6 +54,7 @@ export const FormRegisterImovel = () => {
     }
     try {
       await axios.post('http://localhost:3333/registerImmobile', {
+        name: formValues.name ,
         cep: formValues.cep,
         rua: formValues.rua,
         bairro: formValues.bairro,
@@ -65,6 +67,7 @@ export const FormRegisterImovel = () => {
         rent: formValues.rent,
       });
       setFormValues({
+        name: '',
         cep: '',
         cidade: '',
         uf: '',
@@ -91,12 +94,13 @@ export const FormRegisterImovel = () => {
             <DialogDescription>
               <form onSubmit={handleSubmit} className='gap-8 flex-col'>
                 <div className='flex gap-4 pb-2'>
+                  
                 <Input
                     className="w-28 "
                     type="text"
                     placeholder="Name Immobile"
-                    name="nameImmobile"
-                    value={formValues.nameImmobile}
+                    name="name"
+                    value={formValues.name}
                     onChange={handleChange}
                     required
                   />

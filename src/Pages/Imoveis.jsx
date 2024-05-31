@@ -1,5 +1,6 @@
+import { useState, useEffect } from 'react';
+import axios from "axios"; 
 import { MoreHorizontal } from "lucide-react"
-
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
@@ -26,8 +27,61 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-export default function  Imoveis() {
-  console.log("imoveis")
+export default function Imoveis() {
+  const [immobiles, setImmobiles] = useState([]);
+
+  useEffect(() => {
+    const fetchImmobiles = async () => {
+      try {
+        const response = await axios.post('http://localhost:3333/listImmobile');
+        setImmobiles(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error('Erro ao obter lista de imóveis:', error);
+      }
+    };
+
+    fetchImmobiles();
+  }, []);
+
+  const tableList = () => {
+    return immobiles.map((immobile, index) => (
+      <TableRow key={index}>
+        <TableCell className="hidden sm:table-cell">
+          <img
+            alt="Product img"
+            className="aspect-square rounded-md object-cover"
+            height="64"
+            src={immobile.image} 
+            width="64"
+          />
+        </TableCell>
+        <TableCell className="font-medium">{immobile.propertyname}</TableCell>
+        <TableCell>
+          <Badge variant="outline">{immobile.propertyname}</Badge>
+        </TableCell>
+        <TableCell>{immobile.rent}</TableCell>
+        <TableCell className="hidden md:table-cell">{immobile.broker}</TableCell>
+        <TableCell className="hidden md:table-cell">{immobile.createdAt}</TableCell>
+        <TableCell>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button aria-haspopup="true" size="icon" variant="ghost">
+                <MoreHorizontal className="h-4 w-4" />
+                <span className="sr-only">Toggle menu</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuItem>Edit</DropdownMenuItem>
+              <DropdownMenuItem>Delete</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </TableCell>
+      </TableRow>
+    ));
+  };
+
   return (
     <div className="px-20 pt-8">
       <Card>
@@ -44,12 +98,10 @@ export default function  Imoveis() {
                 <TableHead className="hidden w-[100px] sm:table-cell">
                   <span className="sr-only">img</span>
                 </TableHead>
-                <TableHead>Bropropertiesker</TableHead>
+                <TableHead>Name</TableHead>
                 <TableHead>Status</TableHead>
                 <TableHead>Price</TableHead>
-                <TableHead className="hidden md:table-cell">
-                  Broker
-                </TableHead>
+                <TableHead className="hidden md:table-cell">Broker</TableHead>
                 <TableHead className="hidden md:table-cell">Created at</TableHead>
                 <TableHead>
                   <span className="sr-only">Actions</span>
@@ -57,53 +109,16 @@ export default function  Imoveis() {
               </TableRow>
             </TableHeader>
             <TableBody>
-            <TableRow>
-                <TableCell className="hidden sm:table-cell">
-                  <img
-                    alt="Product img"
-                    className="aspect-square rounded-md object-cover"
-                    height="64"
-                    src="https://imgs.search.brave.com/dHOp1jmrzDUg9sIOXupIwyfIFwOuzArOLoXZ9CdUsqM/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/ZW1icmFjb24uY29t/LmJyL19uZXh0L2lt/YWdlP3VybD1odHRw/czovL2VtYnJhLWFz/c2V0cy5ueWMzLmRp/Z2l0YWxvY2VhbnNw/YWNlcy5jb20vcHVi/bGljL2Jsb2cvNUJ6/aGNZZWlIeFBYR0d3/SzBZVnFwMnJ0dW9J/WlZuLW1ldGFWbUZ1/ZEdGblpXNXpJR1Vn/WkdWemRtRnVkR0Zu/Wlc1eklHUmxJRzF2/Y21GeUlHVnRJSFZ0/SUhCeXc2bGthVzh1/YW5Cbi0uanBnJnc9/Mzg0MCZxPTc1"
-                    width="64"
-                  />
-                </TableCell>
-                <TableCell className="font-medium">
-                      Imovel Rio Branco, Estrela Sul
-                </TableCell>
-                <TableCell>
-                  <Badge variant="outline">Draft</Badge>
-                </TableCell>
-                <TableCell>$499.99</TableCell>
-                <TableCell className="hidden md:table-cell">Jackson Eduardo</TableCell>
-                <TableCell className="hidden md:table-cell">
-                  2023-07-12 10:42 AM
-                </TableCell>
-                <TableCell>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button aria-haspopup="true" size="icon" variant="ghost">
-                        <MoreHorizontal className="h-4 w-4" />
-                        <span className="sr-only">Toggle menu</span>
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                      <DropdownMenuItem>Edit</DropdownMenuItem>
-                      <DropdownMenuItem>Delete</DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </TableCell>
-              </TableRow>
+              {tableList()} {/* Chama tableList() para cada imóvel na lista */}
             </TableBody>
           </Table>
         </CardContent>
         <CardFooter>
           <div className="text-xs text-muted-foreground">
-            Showing <strong>1-10</strong> of <strong>32</strong> products
+            Showing <strong>1-10</strong> of <strong>{immobiles.length}</strong> products
           </div>
         </CardFooter>
       </Card>
     </div>
-
-  )
+  );
 }
