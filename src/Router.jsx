@@ -10,10 +10,10 @@ export function Router() {
   return (
     <Routes>
       <Route path="/" element={<LoginForm />}>
-        <Route path="register" element={<RegisterPage />} />
       </Route>
+      <Route path="/register" element={<RegisterPage />} />
       <Route path="/dashboard" element={<Dashboard />}>
-        <Route index element={<Imoveis/>} />
+        <Route index element={<Imoveis />} />
         <Route path="registerImmobiler" element={<ImmobilierRegister />} />
       </Route>
     </Routes>
