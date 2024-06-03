@@ -32,7 +32,7 @@ import {
 export const SalesHighlight = () => {
   return (
     <div>
-            <Card
+            {/* <Card
               className="overflow-hidden" x-chunk="dashboard-05-chunk-4"
             >
               <CardHeader className="flex flex-row items-start bg-muted/50">
@@ -130,7 +130,7 @@ export const SalesHighlight = () => {
                   </PaginationContent>
                 </Pagination>
               </CardFooter>
-            </Card>
+            </Card> */}
           </div>
   )
 }

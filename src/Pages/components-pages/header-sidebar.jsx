@@ -16,6 +16,11 @@ export const HeaderSidebar = () => {
     email: ""
   })
 
+  async function handleLogout(){
+    localStorage.clear();
+    window.location.href = "/";
+  }
+
   return (
     <div className="md:pl-14 pt-2 sm:pl-0">
       <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
@@ -61,7 +66,11 @@ export const HeaderSidebar = () => {
             </DropdownMenuItem>
             <DropdownMenuItem>Support</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Logout</DropdownMenuItem>
+            <DropdownMenuItem>
+              <button onClick={handleLogout}>
+              Logout
+              </button>
+              </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </header>

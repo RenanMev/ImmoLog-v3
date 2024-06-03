@@ -32,13 +32,14 @@ export function LoginForm() {
       email: email,
       password: password
     })
-      .then((res) => {
+      .then(async (res) => {
         if (res.data.status === 205) {
           setOpenErrPasswordAler(true)
           setTimeout(() => {
             setOpenErrPasswordAler(false)
           }, 20000);
         } if (res.data.status === 200) {
+         localStorage.setItem("user", res.data.mensage.username);
           window.location.href = "/dashboard";
         }
       })
@@ -93,9 +94,9 @@ export function LoginForm() {
               <Button type="submit" className="w-full">
                 Login
               </Button>
-              <Button variant="outline" className="w-full">
+              {/* <Button variant="outline" className="w-full">
                 Login with Google
-              </Button>
+              </Button> */}
             </div>
           </form>
           <div className="mt-4 text-center text-sm">

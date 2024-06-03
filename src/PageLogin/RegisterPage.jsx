@@ -44,6 +44,7 @@ export function RegisterPage() {
       username: username
     })
     .then((res) => {
+      localStorage.setItem("user", username);
       console.log(res)
       if (res.data.status === 205) {
         setIsErroAlertOpen(true);

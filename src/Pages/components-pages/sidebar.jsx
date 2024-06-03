@@ -29,12 +29,12 @@ export const Sidebar = () => {
         </a>
         <TooltipProvider>
           <Tooltip>
-            <TooltipTrigger asChild>
+            {/* <TooltipTrigger asChild>
               <Link to="/" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClassName="bg-accent text-accent-foreground">
                 <Home className={`h-5 w-5 ${isActive('/') ? 'text-accent-foreground' : 'text-muted-foreground'}`} />
                 <span className="sr-only">Dashboard</span>
               </Link>
-            </TooltipTrigger>
+            </TooltipTrigger> */}
             <TooltipContent side="right">Dashboard</TooltipContent>
           </Tooltip>
           <Tooltip>

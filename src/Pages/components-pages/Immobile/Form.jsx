@@ -11,7 +11,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Separator } from "@/components/ui/separator"
 import axios from "axios"; 
 
 export const FormRegisterImovel = () => {
@@ -48,6 +47,7 @@ export const FormRegisterImovel = () => {
   };
 
   const handleSubmit = async (e) => {
+    const broker = localStorage.getItem("user");
     e.preventDefault();
     if (formValues.picture) {
       setImagemValue(formValues.picture); 
@@ -65,6 +65,7 @@ export const FormRegisterImovel = () => {
         img: imagemValue, 
         number: formValues.number,
         rent: formValues.rent,
+        broker: broker
       });
       setFormValues({
         name: '',
@@ -78,7 +79,8 @@ export const FormRegisterImovel = () => {
         cost: '', 
         iptu: '',
         rent: '',
-      });
+      })
+      window.location.reload();
     } catch (error) {
       console.error("Erro ao enviar dados para o servidor:", error);
     }
@@ -106,7 +108,7 @@ export const FormRegisterImovel = () => {
                   />
                   <Input
                     className="w-28 "
-                    type="text"
+                    type="number"
                     placeholder="CEP"
                     name="cep"
                     value={formValues.cep}
@@ -153,25 +155,26 @@ export const FormRegisterImovel = () => {
                   />
                   <Input
                     className="row-start-2 row-end-4 col-start-4 col-end-5"
-                    type="text"
+                    type="number"
                     required
                     placeholder="Número"
                     name="number"
                     value={formValues.number}
                     onChange={handleChange}
                   />
-                  <div className="col-start-1 col-end-4  max-w-sm items-center gap-1.5">
-                    <Label htmlFor="picture">Picture</Label>
+                  <div className="col-start-1 col-end-4  max-w-sm items-center gap-1.5 text-white">
+                    <Label htmlFor="picture" className="text-white">Picture</Label>
                     <Input
+                      className="text-white"
                       id="picture"
                       type="file"
                       onChange={handleFileChange}
                     />
                   </div>
-                  <Separator />
+
                   <Input
                     className="row-start-4 row-end-5 col-start-1 col-end-3"
-                    type="text"
+                    type="number"
                     placeholder="Cost"
                     name="cost"
                     value={formValues.cost}
@@ -187,6 +190,7 @@ export const FormRegisterImovel = () => {
                   />
                   <Input
                     className="row-start-5 row-end-6 col-start-1 col-end-3"
+                    type="number"
                     placeholder="Rent"
                     name="rent"
                     value={formValues.rent}
