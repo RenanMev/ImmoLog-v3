@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from "axios"; 
+import axios from "axios";
 import { MoreHorizontal } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -26,20 +26,27 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import AlertDeleteImovel from '@/PageLogin/componentes/alertSucessDelte';
+import AlertDeleteImovel from '@/Pages/components-pages/alert/alertSucessDelte';
+import { DialogEditImmo } from './DialogEditImmo';
 
-export default function Imoveis() {
+
+
+export default function ImmobileTable() {
   const [immobiles, setImmobiles] = useState([]);
   const [openAlertSuccess, setOpenAlertSuccess] = useState(false);
-
-
+  const [openDialog, setOpenDialog] = useState(false);
+  const [tableSelectEdit, setTableSelectEdit] = useState()
   const fetchImmobiles = async () => {
     try {
-      const response = await axios.post('http://localhost:3333/listImmobile');
+            const response = await axios.post('http://localhost:3333/listImmobile');
       setImmobiles(response.data);
     } catch (error) {
       console.error('Erro ao obter lista de imóveis:', error);
     }
+  };
+
+  const handleCloseDialog = (newValue) => {
+    setOpenDialog(newValue);
   };
 
 
@@ -48,13 +55,19 @@ export default function Imoveis() {
   }, []);
 
   async function deleteImovel(immobileId) {
-      await axios.post("http://localhost:3333/deleteImmobile", { id: immobileId.idimovel }).then(()=>{
-        setOpenAlertSuccess(true);
-        fetchImmobiles()
-      })
-     
-    
+    await axios.post("http://localhost:3333/deleteImmobile", { id: immobileId.idimovel }).then(() => {
+      setOpenAlertSuccess(true);
+      fetchImmobiles()
+    })
   }
+
+
+  const handleEditClick = (immobile) => {
+    setOpenDialog(true);
+    setTableSelectEdit(immobile.idimovel)
+    console.log(openDialog)
+  };
+
 
   const tableList = immobiles.map((immobile, index) => (
     <TableRow key={index}>
@@ -74,6 +87,7 @@ export default function Imoveis() {
       <TableCell>R$ {immobile.rent.replace('.', ',')}</TableCell>
       <TableCell className="hidden md:table-cell">{immobile.broker}</TableCell>
       <TableCell className="hidden md:table-cell">{immobile.city}</TableCell>
+      <TableCell className="hidden md:table-cell">{immobile.cep}</TableCell>
       <TableCell>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -84,7 +98,9 @@ export default function Imoveis() {
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem>Edit</DropdownMenuItem>
+            <DropdownMenuItem onClick={()=>handleEditClick(immobile)} >
+              edit
+            </DropdownMenuItem>
             <DropdownMenuItem>
               <button onClick={() => deleteImovel(immobile)}>
                 Delete
@@ -97,13 +113,13 @@ export default function Imoveis() {
   ));
 
   return (
-    <div className="px-20 pt-8">
-      <Card>
+    <div className="md:px-20 lg:px-20 sm:px-20 pt-8">
+      <Card >
         <CardHeader>
-          <CardTitle>Imóveis</CardTitle>
+          <CardTitle>Properties </CardTitle>
           <CardDescription>
-            Imóveis registrados
-          </CardDescription>
+          Registered properties
+                    </CardDescription>
         </CardHeader>
         <CardContent>
           <Table>
@@ -117,6 +133,7 @@ export default function Imoveis() {
                 <TableHead>Price</TableHead>
                 <TableHead className="hidden md:table-cell">Broker</TableHead>
                 <TableHead className="hidden md:table-cell">City</TableHead>
+                <TableHead className="hidden md:table-cell">Cep</TableHead>
                 <TableHead>
                   <span className="sr-only">Actions</span>
                 </TableHead>
@@ -133,7 +150,8 @@ export default function Imoveis() {
           </div>
         </CardFooter>
       </Card>
-      {openAlertSuccess && <AlertDeleteImovel/>}
+      {openAlertSuccess && <AlertDeleteImovel />}
+      <DialogEditImmo openDialog={openDialog} handleCloseDialog={handleCloseDialog} immobileSelect={tableSelectEdit} />
     </div>
   );
 }

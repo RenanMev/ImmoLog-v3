@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Loading from "@/Pages/components-pages/loading";
-import AlertSucess from "./componentes/Alert";
+import AlertSucess from "../Pages/components-pages/alert/Alert";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import AlertErr from "./componentes/AlertErr";
+import AlertErr from "../Pages/components-pages/alert/AlertErr";
 
 export function RegisterPage() {
   const [isLoading, setIsLoading] = useState(false);

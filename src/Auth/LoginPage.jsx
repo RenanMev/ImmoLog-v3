@@ -12,7 +12,7 @@ import ImgLogo from "@/assets/Logoverde.png";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import AlertErrPass from "./componentes/AlertErrPass";
+import AlertErrPass from "../Pages/components-pages/alert/AlertErrPass";
 
 export function LoginForm() {
   const [email, setEmail] = useState('');

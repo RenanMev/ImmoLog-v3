@@ -1,10 +1,6 @@
-import {
-  File,
-  ListFilter,
-} from "lucide-react"
+
 import { useState, useEffect } from 'react';
 
-import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
@@ -13,14 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 import { Progress } from "@/components/ui/progress"
 import {
   Table,
@@ -33,13 +21,10 @@ import {
 import {
   Tabs,
   TabsContent,
-  TabsList,
-  TabsTrigger,
 } from "@/components/ui/tabs"
-import { FormRegisterImovel } from "@/Pages/components-pages/Immobile/Form"
-import { SalesHighlight } from "@/Pages/components-pages/Immobile/SalesHighlight"
+import { FormRegisterImovel } from "@/Pages/PageImmoRegister/FormRegisterImmo"
+// import { SalesHighlight } from "@/Pages/components-pages/PageImmoTable/SalesHighlight"
 import axios from "axios";
-import { MoreHorizontal } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 
 
@@ -78,16 +63,6 @@ export const ImmobilierRegister = () => {
       <TableCell>R$ {immobile.rent.replace('.', ',')}</TableCell>
       <TableCell className="hidden md:table-cell">{immobile.broker}</TableCell>
       <TableCell className="hidden md:table-cell">{immobile.city}</TableCell>
-      <TableCell>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button aria-haspopup="true" size="icon" variant="ghost">
-              <MoreHorizontal className="h-4 w-4" />
-              <span className="sr-only">Toggle menu</span>
-            </Button>
-          </DropdownMenuTrigger>
-        </DropdownMenu>
-      </TableCell>
     </TableRow>
   ));
 
@@ -114,7 +89,7 @@ export const ImmobilierRegister = () => {
                 <FormRegisterImovel />
               </CardFooter>
             </Card>
-            {/* <Card x-chunk="dashboard-05-chunk-1">
+               <Card x-chunk="dashboard-05-chunk-1">
             <CardHeader className="pb-2">
               <CardDescription>This Week</CardDescription>
               <CardTitle className="text-4xl">$1,329</CardTitle>
@@ -127,7 +102,7 @@ export const ImmobilierRegister = () => {
             <CardFooter>
               <Progress value={25} aria-label="25% increase" />
             </CardFooter>
-          </Card> */}
+          </Card>
             <Card x-chunk="dashboard-05-chunk-2">
               <CardHeader className="pb-2">
                 <CardDescription>This Month</CardDescription>
@@ -144,48 +119,6 @@ export const ImmobilierRegister = () => {
             </Card>
           </div>
           <Tabs defaultValue="week">
-            <div className="flex items-center">
-              <TabsList>
-                <TabsTrigger value="week">Week</TabsTrigger>
-                <TabsTrigger value="month">Month</TabsTrigger>
-                <TabsTrigger value="year">Year</TabsTrigger>
-              </TabsList>
-              <div className="ml-auto flex items-center gap-2">
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    {/* <Button
-                      variant="outline"
-                      size="sm"
-                      className="h-7 gap-1 text-sm"
-                    >
-                      <ListFilter className="h-3.5 w-3.5" />
-                      <span className="sr-only sm:not-sr-only">Filter</span>
-                    </Button> */}
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuLabel>Filter by</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuCheckboxItem checked>
-                      Fulfilled
-                    </DropdownMenuCheckboxItem>
-                    <DropdownMenuCheckboxItem>
-                      Declined
-                    </DropdownMenuCheckboxItem>
-                    <DropdownMenuCheckboxItem>
-                      Refunded
-                    </DropdownMenuCheckboxItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="h-7 gap-1 text-sm"
-                >
-                  <File className="h-3.5 w-3.5" />
-                  <span className="sr-only sm:not-sr-only">Export</span>
-                </Button>
-              </div>
-            </div>
             <TabsContent value="week">
               <Card x-chunk="dashboard-05-chunk-3">
                 <CardHeader className="px-7">
@@ -198,17 +131,17 @@ export const ImmobilierRegister = () => {
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead>broker</TableHead>
-                        <TableHead className="hidden sm:table-cell">
-                          Type
+                        <TableHead className="hidden w-[100px] sm:table-cell">
+                          <span className="sr-only">img</span>
                         </TableHead>
-                        <TableHead className="hidden sm:table-cell">
-                          Status
+                        <TableHead>Name</TableHead>
+                        <TableHead>Status</TableHead>
+                        <TableHead>Price</TableHead>
+                        <TableHead className="hidden md:table-cell">Broker</TableHead>
+                        <TableHead className="hidden md:table-cell">City</TableHead>
+                        <TableHead>
+                          <span className="sr-only">Actions</span>
                         </TableHead>
-                        <TableHead className="hidden md:table-cell">
-                          Date
-                        </TableHead>
-                        <TableHead className="text-right">Amount</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -217,10 +150,11 @@ export const ImmobilierRegister = () => {
                   </Table>
                 </CardContent>
               </Card>
+              
             </TabsContent>
           </Tabs>
         </div>
-        <SalesHighlight />
+        {/* <SalesHighlight /> */}
       </main>
     </div></div>
   )

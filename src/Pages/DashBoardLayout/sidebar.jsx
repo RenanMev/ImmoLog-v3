@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, Hotel, Users2, LineChart, Settings, DiamondPlus } from "lucide-react";
+import { Hotel, Settings, DiamondPlus } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 import img from "@/assets/Logo.png";
@@ -30,7 +30,7 @@ export const Sidebar = () => {
         <TooltipProvider>
           <Tooltip>
             {/* <TooltipTrigger asChild>
-              <Link to="/" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClassName="bg-accent text-accent-foreground">
+              <Link to="/" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" >
                 <Home className={`h-5 w-5 ${isActive('/') ? 'text-accent-foreground' : 'text-muted-foreground'}`} />
                 <span className="sr-only">Dashboard</span>
               </Link>
@@ -39,7 +39,7 @@ export const Sidebar = () => {
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Link to="/dashboard" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClassName="bg-accent text-accent-foreground">
+              <Link to="/dashboard" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" >
                 <Hotel className={`h-5 w-5 ${isActive('/dashboard') ? 'text-accent-foreground' : 'text-muted-foreground'}`} />
                 <span className="sr-only">Imóvel</span>
               </Link>
@@ -48,7 +48,7 @@ export const Sidebar = () => {
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Link to="/dashboard/registerImmobiler" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClassName="bg-accent text-accent-foreground">
+              <Link to="/dashboard/registerImmobiler" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" >
                 <DiamondPlus className={`h-5 w-5 ${isActive('/dashboard/registerImmobiler') ? 'text-accent-foreground' : 'text-muted-foreground'}`} />
                 <span className="sr-only">Register</span>
               </Link>
@@ -57,7 +57,7 @@ export const Sidebar = () => {
           </Tooltip>
           {/* <Tooltip>
             <TooltipTrigger asChild>
-              <Link to="/clientes" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClassName="bg-accent text-accent-foreground">
+              <Link to="/clientes" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" >
                 <Users2 className={`h-5 w-5 ${isActive('/clientes') ? 'text-accent-foreground' : 'text-muted-foreground'}`} />
                 <span className="sr-only">Clientes</span>
               </Link>
@@ -66,7 +66,7 @@ export const Sidebar = () => {
           </Tooltip> */}
           {/* <Tooltip>
             <TooltipTrigger asChild>
-              <Link to="/analise" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClassName="bg-accent text-accent-foreground">
+              <Link to="/analise" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" >
                 <LineChart className={`h-5 w-5 ${isActive('/analise') ? 'text-accent-foreground' : 'text-muted-foreground'}`} />
                 <span className="sr-only">Análise</span>
               </Link>
@@ -79,7 +79,7 @@ export const Sidebar = () => {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Link to="/configuracoes" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" activeClassName="bg-accent text-accent-foreground">
+              <Link to="/configuracoes" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" >
                 <Settings className={`h-5 w-5 ${isActive('/configuracoes') ? 'text-accent-foreground' : 'text-muted-foreground'}`} />
                 <span className="sr-only">Configurações</span>
               </Link>

@@ -1,7 +1,7 @@
 // Arquivo Dashboard.js
 
-import { Sidebar } from './components-pages/sidebar';
-import { HeaderSidebar } from './components-pages/header-sidebar';
+import { Sidebar } from './sidebar';
+import { HeaderSidebar } from './header-sidebar';
 import { Outlet } from 'react-router-dom';
 
 export function Dashboard() {

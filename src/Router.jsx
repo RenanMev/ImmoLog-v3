@@ -1,10 +1,10 @@
 
 import { Routes, Route } from 'react-router-dom';
-import { LoginForm } from './PageLogin/LoginPage';
-import { RegisterPage } from './PageLogin/RegisterPage';
-import { Dashboard } from './Pages/dashboard';
-import { ImmobilierRegister } from './Pages/components-pages/Immobile/ImmobilierRegister';
-import Imoveis from './Pages/Imoveis';
+import { LoginForm } from './Auth/LoginPage';
+import { RegisterPage } from './Auth/RegisterPage';
+import { Dashboard } from './Pages/DashBoardLayout/dashboard';
+import { ImmobilierRegister } from './Pages/PageImmoRegister/ImmobilierRegister';
+import ImmobileTable from './Pages/PageImmoTable/TableImmobilerList';
 
 export function Router() {
   return (
@@ -13,7 +13,7 @@ export function Router() {
       </Route>
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/dashboard" element={<Dashboard />}>
-        <Route index element={<Imoveis />} />
+        <Route index element={<ImmobileTable />} />
         <Route path="registerImmobiler" element={<ImmobilierRegister />} />
       </Route>
     </Routes>
