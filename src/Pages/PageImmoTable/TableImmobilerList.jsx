@@ -28,6 +28,7 @@ import {
 } from "@/components/ui/table"
 import AlertDeleteImovel from '@/Pages/components-pages/alert/alertSucessDelte';
 import { DialogEditImmo } from './DialogEditImmo';
+import { DialogViewImmo } from './DialogViewImmo';
 
 
 
@@ -35,10 +36,12 @@ export default function ImmobileTable() {
   const [immobiles, setImmobiles] = useState([]);
   const [openAlertSuccess, setOpenAlertSuccess] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
+  const [openDialogView, setOpenDialogView] = useState(false);
   const [tableSelectEdit, setTableSelectEdit] = useState()
+  const [tableSelectView, setTableSelectView] = useState()
   const fetchImmobiles = async () => {
     try {
-            const response = await axios.post('http://localhost:3333/listImmobile');
+      const response = await axios.post('http://localhost:3333/listImmobile');
       setImmobiles(response.data);
     } catch (error) {
       console.error('Erro ao obter lista de imóveis:', error);
@@ -47,6 +50,7 @@ export default function ImmobileTable() {
 
   const handleCloseDialog = (newValue) => {
     setOpenDialog(newValue);
+    setOpenDialogView(newValue)
   };
 
 
@@ -57,15 +61,21 @@ export default function ImmobileTable() {
   async function deleteImovel(immobileId) {
     await axios.post("http://localhost:3333/deleteImmobile", { id: immobileId.idimovel }).then(() => {
       setOpenAlertSuccess(true);
+      setTimeout(() => {
+        setOpenAlertSuccess(false)
+      }, 20000);
       fetchImmobiles()
     })
   }
 
+  const handleViewClick = (immobile) =>{
+    setOpenDialogView(true);
+    setTableSelectView(immobile)
+  }
 
   const handleEditClick = (immobile) => {
     setOpenDialog(true);
-    setTableSelectEdit(immobile.idimovel)
-    console.log(openDialog)
+    setTableSelectEdit(immobile)
   };
 
 
@@ -98,12 +108,15 @@ export default function ImmobileTable() {
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem onClick={()=>handleEditClick(immobile)} >
-              edit
+            <DropdownMenuItem onClick={() => handleViewClick(immobile)}>
+              Visualizar
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => handleEditClick(immobile)} >
+              Editar
             </DropdownMenuItem>
             <DropdownMenuItem>
               <button onClick={() => deleteImovel(immobile)}>
-                Delete
+                Deletar
               </button>
             </DropdownMenuItem>
           </DropdownMenuContent>
@@ -116,10 +129,10 @@ export default function ImmobileTable() {
     <div className="md:px-20 lg:px-20 sm:px-20 pt-8">
       <Card >
         <CardHeader>
-          <CardTitle>Properties </CardTitle>
+          <CardTitle>Imoveis </CardTitle>
           <CardDescription>
-          Registered properties
-                    </CardDescription>
+            Imoveis Registrados
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <Table>
@@ -128,14 +141,14 @@ export default function ImmobileTable() {
                 <TableHead className="hidden w-[100px] sm:table-cell">
                   <span className="sr-only">img</span>
                 </TableHead>
-                <TableHead>Name</TableHead>
+                <TableHead>Nome do Imovel</TableHead>
                 <TableHead>Status</TableHead>
-                <TableHead>Price</TableHead>
-                <TableHead className="hidden md:table-cell">Broker</TableHead>
-                <TableHead className="hidden md:table-cell">City</TableHead>
+                <TableHead>Valor (R$)</TableHead>
+                <TableHead className="hidden md:table-cell">Corretor</TableHead>
+                <TableHead className="hidden md:table-cell">Cidade</TableHead>
                 <TableHead className="hidden md:table-cell">Cep</TableHead>
                 <TableHead>
-                  <span className="sr-only">Actions</span>
+                  <span className="sr-only">Ação</span>
                 </TableHead>
               </TableRow>
             </TableHeader>
@@ -150,8 +163,21 @@ export default function ImmobileTable() {
           </div>
         </CardFooter>
       </Card>
-      {openAlertSuccess && <AlertDeleteImovel />}
-      <DialogEditImmo openDialog={openDialog} handleCloseDialog={handleCloseDialog} immobileSelect={tableSelectEdit} />
+      {openAlertSuccess && <div className='pt-5'>
+        <AlertDeleteImovel />
+      </div>}
+      <DialogEditImmo
+        fetchImmobiles={fetchImmobiles}
+        openDialog={openDialog}
+        handleCloseDialog={handleCloseDialog}
+        immobileSelect={tableSelectEdit} />
+      <DialogViewImmo
+       fetchImmobiles={fetchImmobiles}
+       openDialog={openDialogView}
+       handleCloseDialog={handleCloseDialog}
+       immobileSelect={tableSelectView} />
+
+
     </div>
   );
 }

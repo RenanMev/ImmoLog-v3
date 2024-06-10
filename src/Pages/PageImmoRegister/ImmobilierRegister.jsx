@@ -26,24 +26,54 @@ import { FormRegisterImovel } from "@/Pages/PageImmoRegister/FormRegisterImmo"
 // import { SalesHighlight } from "@/Pages/components-pages/PageImmoTable/SalesHighlight"
 import axios from "axios";
 import { Badge } from "@/components/ui/badge"
+import { AlertEditGoals } from './AlertEditGoals';
 
 
 
 export const ImmobilierRegister = () => {
   const [immobiles, setImmobiles] = useState([]);
-
+  const [overallValue, setOverallValue] = useState()
+  const [valueGoals, setValueGoals] = useState(0)
+  const [porc, setPorc] = useState()
   const fetchImmobiles = async () => {
     try {
       const response = await axios.post('http://localhost:3333/listImmobile');
       setImmobiles(response.data);
+      let totalRent = 0;
+      for (let i = 0; i < response.data.length; i++) {
+        if (response.data[i].status === 'vendido') {
+          totalRent += parseInt(response.data[i].rent);
+        }
+      }
+      setOverallValue(totalRent)
     } catch (error) {
       console.error('Erro ao obter lista de imóveis:', error);
     }
   };
 
+
+  useEffect(()=>{
+    let meta = localStorage.getItem("meta")
+    if(meta){
+      setValueGoals(meta)
+    }
+  },[])
+
+  function percentageCalculation() {
+    let meta = parseInt(valueGoals)
+    let num2 = parseInt(overallValue)
+    let porcentagemProgresso = (num2 / meta) * 100
+    const porcentagemFinal = porcentagemProgresso > 100 ? 100 : porcentagemProgresso;
+    setPorc(porcentagemFinal);
+  }
+  
+
   useEffect(() => {
     fetchImmobiles();
   }, []);
+  useEffect(()=>{
+    percentageCalculation()
+  },[valueGoals,overallValue])
 
   const tableList = immobiles.map((immobile, index) => (
     <TableRow key={index}>
@@ -67,7 +97,9 @@ export const ImmobilierRegister = () => {
   ));
 
 
-
+  function handleChangeGoals(value){
+    setValueGoals(value)
+  }
 
 
   return (
@@ -79,52 +111,50 @@ export const ImmobilierRegister = () => {
               className="sm:col-span-2" x-chunk="dashboard-05-chunk-0"
             >
               <CardHeader className="pb-3">
-                <CardTitle>Register New Immobile</CardTitle>
+                <CardTitle>Registre um novo imovel </CardTitle>
                 <CardDescription className="max-w-lg text-balance leading-relaxed">
-                  Introducing Our Dynamic Orders Dashboard for Seamless
-                  Management and Insightful Analysis.
+                  Para controle de imoveis, registre o imovel, com o endereço correto e valores!
                 </CardDescription>
               </CardHeader>
               <CardFooter>
                 <FormRegisterImovel />
               </CardFooter>
             </Card>
-               <Card x-chunk="dashboard-05-chunk-1">
-            <CardHeader className="pb-2">
-              <CardDescription>This Week</CardDescription>
-              <CardTitle className="text-4xl">$1,329</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-xs text-muted-foreground">
-                +25% from last week
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Progress value={25} aria-label="25% increase" />
-            </CardFooter>
-          </Card>
-            <Card x-chunk="dashboard-05-chunk-2">
+            <Card x-chunk="dashboard-05-c  hunk-1">
               <CardHeader className="pb-2">
-                <CardDescription>This Month</CardDescription>
-                <CardTitle className="text-4xl">$5,329</CardTitle>
+                <CardDescription>Vendido </CardDescription>
+                <CardTitle className="text-4xl pt-2">R$ {overallValue}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-xs text-muted-foreground">
-                  +10% from last month
+
                 </div>
               </CardContent>
               <CardFooter>
-                <Progress value={12} aria-label="12% increase" />
+                <Progress value={porc} aria-label="25% increase" />
               </CardFooter>
+            </Card>
+            <Card x-chunk="dashboard-05-chunk-2">
+              <CardHeader className="pb-2">
+                <CardDescription>Meta Anual</CardDescription>
+                <CardTitle className="text-3xl flex gap-4 pt-3">
+                  <div>
+                    R$ {valueGoals}
+                  </div>
+                  <div>
+                    <AlertEditGoals ChangeGoals={handleChangeGoals} minValue={overallValue} />
+                  </div>
+                </CardTitle>
+              </CardHeader>
             </Card>
           </div>
           <Tabs defaultValue="week">
             <TabsContent value="week">
               <Card x-chunk="dashboard-05-chunk-3">
                 <CardHeader className="px-7">
-                  <CardTitle>Orders</CardTitle>
+                  <CardTitle>Imoveis Registrados</CardTitle>
                   <CardDescription>
-                    Recent orders from your store.
+                    Imoveis cadastrados por ultimo 
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -150,7 +180,7 @@ export const ImmobilierRegister = () => {
                   </Table>
                 </CardContent>
               </Card>
-              
+
             </TabsContent>
           </Tabs>
         </div>

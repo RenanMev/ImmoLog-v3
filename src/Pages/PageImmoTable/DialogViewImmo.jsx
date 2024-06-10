@@ -21,7 +21,7 @@ import {
 import { Button } from '@/components/ui/button';
 import axios from "axios";
 
-export const DialogEditImmo = (props) => {
+export const DialogViewImmo = (props) => {
   console.log(props)
   const [open, setOpen] = useState(props.openDialog);
   const dialogRef = useRef(null);
@@ -52,7 +52,7 @@ export const DialogEditImmo = (props) => {
     setOpen(props.openDialog);
   }, [props]);
 
-  const handleEditImmobiler = () => {
+  const handleViewImmobiler = () => {
     const requestBody = {
       id: props.immobileSelect.idimovel,
       nameImmobiler: nomeImovel,
@@ -62,13 +62,13 @@ export const DialogEditImmo = (props) => {
       corretor: selectBroker
     };
   
-    axios.post("http://localhost:3333/editImmobiler", requestBody)
+    axios.post("http://localhost:3333/ViewImmobiler", requestBody)
       .then(() => {
         props.fetchImmobiles()
         handleClose()
       })
       .catch((error) => {
-        console.error("Erro ao editar imóvel:", error);
+        console.error("Erro ao Viewar imóvel:", error);
       });
   }
   
@@ -79,7 +79,7 @@ export const DialogEditImmo = (props) => {
       <Dialog open={open}>
         <DialogContent className="max-w-3xl" ref={dialogRef}>
           <DialogHeader>
-            <DialogTitle>Edite os valores!</DialogTitle>
+            <DialogTitle>Imoveis</DialogTitle>
             <DialogDescription>
               <div className='grid grid-cols-4  gap-4 pt-4'>
                 <div className='grid col-start-1 col-end-3 row-start-1 row-end-2'>
@@ -133,7 +133,7 @@ export const DialogEditImmo = (props) => {
           </DialogHeader>
           <DialogFooter>
             <Button onClick={handleClose} variant="ghost">Cancelar</Button>
-            <Button onClick={handleEditImmobiler}>Editar</Button>
+            <Button onClick={handleViewImmobiler}>Viewar</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -141,7 +141,7 @@ export const DialogEditImmo = (props) => {
   );
 };
 
-DialogEditImmo.propTypes = {
+DialogViewImmo.propTypes = {
   openDialog: PropTypes.bool.isRequired,
   handleCloseDialog: PropTypes.func.isRequired,
   fetchImmobiles: PropTypes.func.isRequired,

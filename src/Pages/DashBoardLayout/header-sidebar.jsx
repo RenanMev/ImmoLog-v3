@@ -100,14 +100,14 @@ export const HeaderSidebar = () => {
           </DropdownMenuTrigger>
 
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuLabel>Minha conta</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
               <a onClick={() => {
                 setOpenSettings(true)
-              }}>Settings</a>
+              }}>configurações</a>
             </DropdownMenuItem>
-            <DropdownMenuItem>Support</DropdownMenuItem>
+            <DropdownMenuItem>Suporte</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
               <button onClick={handleLogout}>

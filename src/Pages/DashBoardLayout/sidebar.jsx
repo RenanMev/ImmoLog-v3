@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Hotel, Settings, DiamondPlus } from "lucide-react";
+import { Hotel, DiamondPlus } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 import img from "@/assets/Logo.png";
@@ -76,7 +76,7 @@ export const Sidebar = () => {
         </TooltipProvider>
       </nav>
       <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-4">
-        <TooltipProvider>
+        {/* <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
               <Link to="/configuracoes" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8" >
@@ -86,7 +86,7 @@ export const Sidebar = () => {
             </TooltipTrigger>
             <TooltipContent side="right">Configurações</TooltipContent>
           </Tooltip>
-        </TooltipProvider>
+        </TooltipProvider> */}
       </nav>
     </aside>
   );
