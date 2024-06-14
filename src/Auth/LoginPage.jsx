@@ -84,9 +84,9 @@ export function LoginForm() {
             <img src={ImgLogo} alt="Logo" />
             <h1 className="font-semibold">IMMOLOG</h1>
           </CardTitle>
-          <CardDescription>Login</CardDescription>
-          <CardDescription>
-            Enter your email below to login to your account
+          <CardDescription>Acessar conta</CardDescription>
+          <CardDescription className="w-80">
+            Informe seu email e sua senha para acessar
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -104,13 +104,7 @@ export function LoginForm() {
               </div>
               <div className="grid gap-2">
                 <div className="flex items-center">
-                  <Label htmlFor="password">Password</Label>
-                  <a
-                    href="#"
-                    className="ml-auto inline-block text-sm underline"
-                  >
-                    Forgot your password?
-                  </a>
+                  <Label htmlFor="password">Senha</Label>
                 </div>
                 <Input
                   onChange={handlePasswordChange}
@@ -120,14 +114,14 @@ export function LoginForm() {
                 />
               </div>
               <Button type="submit" className="w-full">
-                Login
+                Acessar
               </Button>
             </div>
           </form>
           <div className="mt-4 text-center text-sm">
-            Don&apos;t have an account?{" "}
+            Não tem uma conta? {" "}
             <Link to="/register" className="underline">
-              Sign up
+              se registre AQUI
             </Link>
           </div>
           <div className="pt-6">
